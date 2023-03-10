@@ -39,9 +39,10 @@ function PosterDetails() {
     <>
       <Container fullwidth>
         <Card
+          elevation={5}
           sx={{
             background: "transparent",
-
+            /*   boxShadow: "2px 2px 2px 2px", */
             opacity: 10,
           }}
         >
@@ -87,7 +88,7 @@ function PosterDetails() {
                     width: "50%",
                     marginLeft: 3,
                     marginBottom: 2,
-                    border: "solid black 2px",
+
                     borderRadius: 3,
                   }}
                   src={movie.Poster}

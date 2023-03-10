@@ -38,7 +38,7 @@ const MovieCarousel = () => {
   var settings = {
     className: "center",
     centerMode: true,
-    centerPadding: "19px",
+    centerPadding: "10px",
     dots: true,
     infinite: true,
     speed: 500,
@@ -88,7 +88,12 @@ const MovieCarousel = () => {
       </Box>
 
       <Button
-        sx={{ position: "relative", left: "30rem", color: "black" }}
+        sx={{
+          position: "relative",
+          left: "30rem",
+          color: "#101935",
+          fontSize: "1rem",
+        }}
         variant=""
         endIcon={<KeyboardDoubleArrowRightOutlinedIcon />}
         onClick={navigateToHome}

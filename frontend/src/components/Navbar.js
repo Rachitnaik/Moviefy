@@ -112,7 +112,7 @@ function Navbar(props) {
         elevation={5}
         component="nav"
         sx={{
-          background: "#333",
+          background: "#152C48",
         }}
       >
         <Toolbar>

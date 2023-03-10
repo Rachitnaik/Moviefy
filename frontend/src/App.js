@@ -71,9 +71,10 @@ function App() {
               element={!nm ? <Feedback /> : <Results name={nm} />}
             />
           </Routes>
-          {/* <Footer /> */}
         </Router>
       </Box>
+
+      <Footer />
     </>
   );
 }
