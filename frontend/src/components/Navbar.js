@@ -112,7 +112,7 @@ function Navbar(props) {
         elevation={5}
         component="nav"
         sx={{
-          background: "#152C48",
+          background: "transparent",
         }}
       >
         <Toolbar>
@@ -140,7 +140,16 @@ function Navbar(props) {
           </IconButton>
 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button component={Link} to="/" variant="" sx={{ color: "White" }}>
+            <Button
+              component={Link}
+              to="/"
+              variant=""
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
+            >
               Home
             </Button>
 
@@ -148,7 +157,11 @@ function Navbar(props) {
               component={Link}
               to="/about"
               variant=""
-              sx={{ color: "White" }}
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
             >
               About
             </Button>
@@ -157,7 +170,11 @@ function Navbar(props) {
               component={Link}
               to="/feedback"
               variant=""
-              sx={{ color: "White" }}
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
             >
               Feedback
             </Button>

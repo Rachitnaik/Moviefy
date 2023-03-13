@@ -5,6 +5,7 @@ import Posters from "./components/Posters";
 import About from "./components/About";
 import Feedback from "./components/Feedback";
 import Box from "@mui/material/Box";
+import SearchB from "./components/SearchB";
 import Container from "@mui/material/Container";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PosterDetails from "./components/PosterDetails";
@@ -24,9 +25,24 @@ import Footer from "./components/Footer";
   },
 })); */
 
-function App() {
+function App(props) {
   const classes = createTheme();
   const [nm, setnm] = useState("");
+
+  ////////////////////////////////////
+  /* const dataTransfer = (p) => {
+    props.finalTransfer(p);
+  };
+  //new code on 15feb for search
+  const saveSearchHandler = (movies) => {
+    const searchData = {
+      ...movies,
+    };
+    console.log(searchData);
+    props.onAddSearch(searchData);
+  }; */
+
+  /////////////////////////////////
 
   const addSearchHandler = (result) => {
     console.log("in App");
@@ -51,6 +67,12 @@ function App() {
             finalTransfer={dataTranserToApp}
             onAddSearch={addSearchHandler}
           />
+
+          {/* <SearchB
+            datat={dataTransfer}
+            onSaveSearchData={saveSearchHandler}
+          ></SearchB> */}
+
           <Routes>
             <Route
               path="/"
@@ -71,10 +93,10 @@ function App() {
               element={!nm ? <Feedback /> : <Results name={nm} />}
             />
           </Routes>
+          {/* <Footer /> */}
         </Router>
+        <Footer />
       </Box>
-
-      <Footer />
     </>
   );
 }

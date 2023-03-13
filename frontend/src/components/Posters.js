@@ -29,9 +29,17 @@ export default function Posters() {
   const [selectedPostId, setSelectedPostId] = useState(null);
 
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setPosts(response.data);
-    });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(baseURL);
+        setPosts(response.data);
+      } catch (error) {
+        // handle error
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -57,7 +65,7 @@ export default function Posters() {
             columns={{ xs: 4, sm: 4, md: 15 }} // for desktop
           >
             {currentPosts.map((movie, index) => (
-              <Grid key={movie._id} item xs={2} sm={4} md={2}>
+              <Grid key={movie._id} item xs={2} sm={2} md={2}>
                 {" "}
                 {/*  for smaller screens */}
                 <Link
@@ -71,6 +79,7 @@ export default function Posters() {
                     sx={{
                       height: "100%",
                       width: "100%",
+
                       ...(selectedPostId === movie._id
                         ? styles.selectedPoster
                         : styles.poster),

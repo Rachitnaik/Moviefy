@@ -21,7 +21,7 @@ code {
     monospace;
 }
 
-/*  html{
-  overscroll-behavior: noscroll;
+ html{
+  overscroll-behavior: smooth;
   
-}   */
+}  

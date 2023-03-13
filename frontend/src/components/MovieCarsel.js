@@ -6,6 +6,8 @@ import KeyboardDoubleArrowRightOutlinedIcon from "@mui/icons-material/KeyboardDo
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import About from "./About";
+import Feedback from "./Feedback";
 import Posters from "./Posters";
 import Results from "./Results";
 import {
@@ -38,12 +40,12 @@ const MovieCarousel = () => {
   var settings = {
     className: "center",
     centerMode: true,
-    centerPadding: "10px",
+    centerPadding: "19px",
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     adaptiveHeight: true,
     autoplay: true,
     speed: 1000,
@@ -75,7 +77,6 @@ const MovieCarousel = () => {
                   sx={{
                     height: "14rem",
                     width: "auto",
-
                     borderRadius: 7,
                   }}
                   src={movie.Poster}
@@ -87,21 +88,24 @@ const MovieCarousel = () => {
         </Slider>
       </Box>
 
-      <Button
-        sx={{
-          position: "relative",
-          left: "30rem",
-          color: "#101935",
-          fontSize: "1rem",
-        }}
-        variant=""
-        endIcon={<KeyboardDoubleArrowRightOutlinedIcon />}
-        onClick={navigateToHome}
-      >
-        Show All Movies
-      </Button>
-
-      {/* for smaller screens */}
+      <Container>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <Button
+              sx={{
+                color: "black",
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+              }}
+              variant=""
+              endIcon={<KeyboardDoubleArrowRightOutlinedIcon />}
+              onClick={navigateToHome}
+            >
+              Show All Movies
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };
