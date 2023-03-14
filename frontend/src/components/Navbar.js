@@ -19,10 +19,18 @@ import SearchB from "./SearchB";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import { createTheme } from "@mui/system";
+import { Typography } from "@mui/material";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
+createTheme({
+  appBar: {
+    background: "linear-gradient(to right, #ff416c, #ff4b2b)",
+  },
+});
 function Navbar(props) {
+  const theme = createTheme();
   ///
   const dataTransfer = (p) => {
     props.finalTransfer(p);
@@ -44,8 +52,46 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <>
+      <Container
+        sx={{
+          width: "12.4rem",
+          backgroundImage: "url(./p7.png)",
+          padding: 4,
+        }}
+      >
+        <SearchB
+          sx={{
+            mt: 6,
+            display: { xs: "flex", md: "none" },
+          }}
+          datat={dataTransfer}
+          onSaveSearchData={saveSearchHandler}
+        ></SearchB>
+      </Container>
+
       <Box
+        onClick={handleDrawerToggle}
+        sx={{
+          textAlign: "center",
+          backgroundImage: "url(./p7.png)",
+          height: "100vh",
+        }}
+      >
+        {/* <Container
+        sx={{
+          width: "20rem",
+          marginRight: 0,
+          padding: 4,
+        }}
+      >
+        <SearchB
+          sx={{ mt: 6, display: { xs: "flex", md: "none" } }}
+          datat={dataTransfer}
+          onSaveSearchData={saveSearchHandler}
+        ></SearchB>
+      </Container> */}
+        {/*  <Box
         component="img"
         sx={{
           margin: 3,
@@ -58,48 +104,85 @@ function Navbar(props) {
         }}
         alt="Movify"
         src="/Movifyy.png"
-      />
-      <Divider sx={{ color: "black", border: 1 }} />
-      <List sx={{ color: "black" }}>
-        {/* For Home */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5.5 }}
-            component={Link}
-            to="/"
-            variant=""
-            endIcon={<HomeIcon />}
-          >
-            <ListItemText> Home</ListItemText>
-          </Button>
-        </ListItem>
-        {/* For About */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5.5 }}
-            component={Link}
-            to="/about"
-            variant=""
-            endIcon={<InfoIcon />}
-          >
-            <ListItemText> About </ListItemText>
-          </Button>
-        </ListItem>
-        {/* For Feedback */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5 }}
-            component={Link}
-            to="/feedback"
-            variant=""
-            endIcon={<FeedbackIcon />}
-          >
-            <ListItemText> Feedback</ListItemText>
-          </Button>
-        </ListItem>
-      </List>
-      <Divider sx={{ color: "black", border: 1 }} />
-    </Box>
+      /> */}
+        <Divider sx={{ color: "black", border: 1 }} />
+        <List>
+          {/* For Home */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/"
+              variant=""
+              endIcon={<HomeIcon />}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.6rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  Home
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+          {/* For About */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/about"
+              variant=""
+              endIcon={<InfoIcon />}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.5rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  About
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+          {/* For Feedback */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/feedback"
+              variant=""
+              endIcon={<FeedbackIcon />}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.5rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  Feedback
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+        </List>
+        <Divider sx={{ color: "black", border: 1 }} />
+        <Typography
+          sx={{ mt: 65, fontFamily: "monospace", fontSize: "1.5rem" }}
+        >
+          Movify
+        </Typography>
+        <Divider sx={{ color: "black", border: 1 }} />
+      </Box>
+    </>
   );
 
   const container =
@@ -112,7 +195,7 @@ function Navbar(props) {
         elevation={5}
         component="nav"
         sx={{
-          background: "transparent",
+          backgroundImage: "url(./p7.png)",
         }}
       >
         <Toolbar>
@@ -129,6 +212,7 @@ function Navbar(props) {
             alt="Movify"
             src="/Movifyy.png"
           />
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -138,6 +222,24 @@ function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
+
+          {/* for mobile  */}
+          <Box
+            component="img"
+            sx={{
+              margin: 0.5,
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              height: "6rem",
+              alignItems: "center",
+              marginLeft: 6,
+              maxHeight: { xs: 80, md: 167 },
+              maxWidth: { xs: 190, md: 250 },
+            }}
+            alt="Movify"
+            src="/Movifyy.png"
+          />
+          {/*  above  mobile logo */}
 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Button
@@ -179,7 +281,13 @@ function Navbar(props) {
               Feedback
             </Button>
           </Box>
-          <Container sx={{ width: "20rem", marginRight: 10 }}>
+          <Container
+            sx={{
+              width: "20rem",
+              marginRight: 10,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             <SearchB
               datat={dataTransfer}
               onSaveSearchData={saveSearchHandler}
@@ -201,7 +309,6 @@ function Navbar(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              border: "solid black 2px",
             },
           }}
         >

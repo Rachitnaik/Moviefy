@@ -56,10 +56,11 @@ export default function Posters() {
 
   return (
     <>
-      <Container fullwidth sx={{ width: "90%" }}>
-        <Box>
+      <Container fullwidth sx={{ width: "100%" }}>
+        <Box sx={{ mt: -5 }}>
+          {/* to make it mobile responsive */}
           <Grid
-            sx={{ alignItems: "center", padding: 3, paddingLeft: 7 }}
+            sx={{ alignItems: "center", padding: 3, paddingLeft: 5 }}
             container
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 4, md: 15 }} // for desktop
@@ -101,6 +102,7 @@ export default function Posters() {
             flexDirection: "column",
             alignItems: "center",
             marginTop: 2,
+            display: { xs: "none", md: "flex" },
           }}
         >
           <Pagination
@@ -109,6 +111,29 @@ export default function Posters() {
             onChange={handleChange}
             color="primary"
             sx={{ position: "fixed", bottom: "4.5rem" }}
+          />
+        </Box>
+
+        {/* for mobile */}
+
+        <Box
+          sx={{
+            mt: 3,
+
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: 10,
+            display: { xs: "flex", md: "none" },
+          }}
+        >
+          <Pagination
+            count={Math.ceil(posts.length / postsPerPage)}
+            page={currentPage}
+            onChange={handleChange}
+            color="primary"
+            sx={{ position: "relative", bottom: "4rem" }}
           />
         </Box>
       </Container>

@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
+import { Typography } from "@mui/material";
 
 function SearchB(props) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +20,7 @@ function SearchB(props) {
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
     debouncedSearch(event.target.value);
+
     //console.log(setSearchTerm);
   };
 
@@ -39,13 +41,14 @@ function SearchB(props) {
         <TextField
           id="input-with-icon-textfield"
           /*  label="Type Your Search" */
-          label="Type Your Movie"
+
+          placeholder="Search"
           value={searchTerm}
           onChange={handleSearchTermChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: "white" }} />
+                <SearchIcon sx={{ color: "#333" }} />
               </InputAdornment>
             ),
           }}

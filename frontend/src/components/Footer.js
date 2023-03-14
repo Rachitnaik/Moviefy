@@ -1,6 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { blueGrey } from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
@@ -16,7 +17,7 @@ export default function BottomAppBar() {
       sx={{
         top: "auto",
         bottom: 0,
-        backgroundColor: "transparent",
+        backgroundImage: "url(./p8.png)",
       }}
     >
       <Toolbar>
@@ -29,19 +30,20 @@ export default function BottomAppBar() {
             color: "#333",
             fontSize: "1.2rem",
             fontStyle: "inherit",
+            color: "white",
           }}
         >
           Movify
         </Typography>
-        <Stack spacing={2} direction="row" sx={{ color: "#333" }}>
-          <Badge color="secondary">
-            <InstagramIcon />
+        <Stack spacing={2} direction="row" sx={{ justifyContent: "center" }}>
+          <Badge>
+            <InstagramIcon sx={{ color: "white" }} />
           </Badge>
           <Badge color="secondary">
-            <FacebookIcon />
+            <FacebookIcon sx={{ color: "white" }} />
           </Badge>
           <Badge color="secondary">
-            <TwitterIcon />
+            <TwitterIcon sx={{ color: "white" }} />
           </Badge>
         </Stack>
       </Toolbar>
