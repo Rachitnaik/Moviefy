@@ -94,7 +94,7 @@ import cors from "cors";
 import movieData from "../movies.js";
 import Feedback from "../feedback.js";
 import dotenv from "dotenv";
-import { createServer } from "http";
+// import { createServer } from "http";
 
 // Initialize express app
 const app = express();
@@ -192,11 +192,11 @@ app.listen(PORT, () => {
   console.log(`app is listening to PORT ${PORT}`);
 });
 // Export the serverless function handler for Vercel
-export default function handler(req, res) {
-  const server = createServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    app(req, res, parsedUrl);
-  });
+// export default function handler(req, res) {
+//   const server = createServer((req, res) => {
+//     const parsedUrl = parse(req.url, true);
+//     app(req, res, parsedUrl);
+//   });
 
-  return server(req, res);
-}
+//   return server(req, res);
+// }
