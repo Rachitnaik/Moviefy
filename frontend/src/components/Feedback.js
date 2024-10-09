@@ -40,7 +40,7 @@ const FeedbackForm = () => {
       email: values.email,
       message: values.message,
     };
-    axios.post("http://localhost:5000/Feedback", data).then((res) => {
+    axios.post("https://moviefy-84ni.vercel.app/Feedback", data).then((res) => {
       console.log(res.data);
       resetForm();
       setFormSubmitted(true);

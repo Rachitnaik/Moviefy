@@ -24,7 +24,7 @@ const MovieCarousel = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/movies").then((response) => {
+    axios.get("https://moviefy-84ni.vercel.app/movies").then((response) => {
       setMovies(response.data);
     });
   }, []);

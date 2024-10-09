@@ -27,7 +27,9 @@ function PosterDetails() {
     async function fetchData() {
       console.log("_id inside useEffect: ", _id);
       if (_id) {
-        const result = await axios.get(`http://localhost:5000/movies/${_id}`);
+        const result = await axios.get(
+          `https://moviefy-84ni.vercel.app/movies/${_id}`
+        );
         console.log(result);
         setMovie(result.data);
       }

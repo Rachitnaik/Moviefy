@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 export default function Results({ name }) {
   const [n, setN] = useState([]);
-  const baseURL = `http://localhost:5000/search/title?title=${name}`;
+  const baseURL = `https://moviefy-84ni.vercel.app/search/title?title=${name}`;
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {

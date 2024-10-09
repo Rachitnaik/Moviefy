@@ -22,7 +22,7 @@ const styles = {
 };
 
 export default function Posters() {
-  const baseURL = "http://localhost:5000/movies";
+  const baseURL = "https://moviefy-84ni.vercel.app/movies";
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(14);
