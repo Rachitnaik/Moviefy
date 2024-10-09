@@ -91,8 +91,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import movieData from "./movies.js";
-import Feedback from "./feedback.js";
+import movieData from "../movies.js";
+import Feedback from "../feedback.js";
 import dotenv from "dotenv";
 import { createServer } from "http";
 import { parse } from "url";
@@ -174,7 +174,10 @@ app.post("/Feedback", (req, res) => {
 app.get("/", (req, res) => {
   res.send("hello world");
 });
-
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`app is listening to PORT ${PORT}`);
+});
 // Export the serverless function handler for Vercel
 export default function handler(req, res) {
   const server = createServer((req, res) => {
