@@ -18,7 +18,8 @@ mongoose.set("strictQuery", false);
 dotenv.config();
 
 mongoose.connect(
-  "mongodb://localhost:27017/MovieData",
+  // "mongodb://localhost:27017/MovieData",
+  process.env.url,
   //"mongodb+srv://rachitgaunkar:MongoDB123@cluster0.k2myc4u.mongodb.net/MovieData",
   {
     useNewUrlParser: true,
