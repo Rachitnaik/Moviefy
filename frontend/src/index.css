@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
   
   
   /* background: linear-gradient(to left top,white, #385170) !important ; */
@@ -21,7 +22,9 @@ code {
     monospace;
 }
 
-/*  html{
-  overscroll-behavior: noscroll;
+  html{
+  overscroll-behavior: smooth;
   
-}   */
+}   
+ 
+::-webkit-scrollbar { display: none; }

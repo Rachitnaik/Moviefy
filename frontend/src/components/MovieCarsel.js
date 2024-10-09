@@ -6,6 +6,9 @@ import KeyboardDoubleArrowRightOutlinedIcon from "@mui/icons-material/KeyboardDo
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import About from "./About";
+import Paralax from "./Paralax";
+import Feedback from "./Feedback";
 import Posters from "./Posters";
 import Results from "./Results";
 import {
@@ -15,7 +18,17 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { createTheme } from "@mui/material/styles";
 
+createTheme(() => ({
+  slickSlider: {
+    borderRadius: "50%",
+    overflow: "hidden",
+    height: "20rem",
+  },
+}));
+
+//functio starts here
 const MovieCarousel = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
@@ -24,7 +37,7 @@ const MovieCarousel = () => {
   };
 
   useEffect(() => {
-    axios.get("https://moviefy-84ni.vercel.app/movies").then((response) => {
+    axios.get("https://moviefy-wine.vercel.app//movies").then((response) => {
       setMovies(response.data);
     });
   }, []);
@@ -35,15 +48,37 @@ const MovieCarousel = () => {
     setCurrentIndex(index);
   };
 
+  /* this is for desktop */
   var settings = {
     className: "center",
     centerMode: true,
-    centerPadding: "19px",
-    dots: true,
+    centerPadding: "10px",
+    /*    dots: true, */
     infinite: true,
-    speed: 500,
+
     slidesToShow: 7,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 2000,
+    /* arrows: false, */
+
+    afterChange: onSlideChange,
+  };
+
+  /* above setting  is for desktop */
+
+  /* below settings for mobile */
+
+  var mobile_settings = {
+    className: "center",
+    centerMode: true,
+    centerPadding: "10px",
+    infinite: true,
+
+    slidesToShow: 1,
+    slidesToScroll: 1,
     adaptiveHeight: true,
     autoplay: true,
     speed: 1000,
@@ -52,51 +87,115 @@ const MovieCarousel = () => {
     afterChange: onSlideChange,
   };
 
+  /* mobile settings */
+
   return (
     <>
       <Box
         sx={{
-          margin: 6,
-          marginTop: 8,
+          margin: 4,
+          marginTop: 5,
         }}
       >
-        <Slider {...settings}>
+        <Slider
+          {...settings}
+          responsive={[
+            {
+              breakpoint: 960,
+              settings: mobile_settings,
+            },
+          ]}
+        >
           {movies.map((movie, index) => (
-            <Box
-              key={movie._id}
-              sx={{
-                transform: currentIndex === index ? "scale(1.1)" : "scale(1)",
-                transition: "transform 0.2s ease-in-out",
-              }}
-            >
-              <Link to={`/movies/${movie._id}`} underline="none">
-                <Box
-                  component="img"
-                  sx={{
-                    height: "14rem",
-                    width: "auto",
-
-                    borderRadius: 7,
-                  }}
-                  src={movie.Poster}
-                  alt={movie.Title}
-                />
-              </Link>
-            </Box>
+            <>
+              <Box
+                key={movie._id}
+                sx={{
+                  transform: currentIndex === index ? "scale(1.1)" : "scale(1)",
+                  transition: "transform 0.2s ease-in-out",
+                  display: { xs: "none", md: "flex" },
+                  /*  background:
+                    "linear-gradient(135deg, #c7cdc6 0%, #8988b9 100%)", */
+                }}
+              >
+                <Link to={`/movies/${movie._id}`} underline="none">
+                  <Box
+                    component="img"
+                    sx={{
+                      height: "14rem ",
+                      width: "auto",
+                      borderRadius: 7,
+                      display: { xs: "none", md: "flex" },
+                    }}
+                    src={movie.Poster}
+                    alt={movie.Title}
+                  />
+                </Link>
+              </Box>
+              {/* for mobile */}
+              <Box
+                key={movie._id}
+                sx={{
+                  transform: currentIndex === index ? "scale(1.1)" : "scale(1)",
+                  transition: "transform 0.2s ease-in-out",
+                  display: { xs: "flex", md: "none" },
+                }}
+              >
+                <Link to={`/movies/${movie._id}`} underline="none">
+                  <Box
+                    component="img"
+                    sx={{
+                      mt: 12,
+                      height: "20rem",
+                      width: "auto",
+                      marginLeft: 6.3,
+                      borderRadius: 7,
+                      /*  display: { xs: "flex", md: "none" }, */
+                    }}
+                    src={movie.Poster}
+                    alt={movie.Title}
+                  />
+                </Link>
+              </Box>
+            </>
           ))}
         </Slider>
       </Box>
 
-      <Button
-        sx={{ position: "relative", left: "30rem", color: "black" }}
-        variant=""
-        endIcon={<KeyboardDoubleArrowRightOutlinedIcon />}
-        onClick={navigateToHome}
+      <Container>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <Button
+              sx={{
+                color: "black",
+                fontFamily: "monospace",
+                fontSize: "1rem",
+              }}
+              variant=""
+              endIcon={<KeyboardDoubleArrowRightOutlinedIcon />}
+              onClick={navigateToHome}
+            >
+              Show All Movies
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
+      {/*  <Container
+        sx={{
+          marginTop: "14rem",
+        }}
       >
-        Show All Movies
-      </Button>
+        <About />
+      </Container>
 
-      {/* for smaller screens */}
+      <Container
+        sx={{
+          marginTop: "13rem",
+          paddingBottom: "5rem",
+        }}
+      >
+        <Feedback />
+      </Container> */}
     </>
   );
 };

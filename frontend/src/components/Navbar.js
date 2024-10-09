@@ -19,10 +19,22 @@ import SearchB from "./SearchB";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import { createTheme } from "@mui/system";
+import { Typography } from "@mui/material";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
+createTheme({
+  appBar: {
+    background: "linear-gradient(to right, #ff416c, #ff4b2b)",
+  },
+});
 function Navbar(props) {
+  const clickHandler = () => {
+    props.onClearbar();
+  };
+
+  const theme = createTheme();
   ///
   const dataTransfer = (p) => {
     props.finalTransfer(p);
@@ -44,62 +56,118 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Box
-        component="img"
+    <>
+      <Container
         sx={{
-          margin: 3,
-          flexGrow: 1,
-          display: { xs: "flex", md: "none" },
-          height: 80,
-          width: 200,
-          maxHeight: { xs: 233, md: 167 },
-          maxWidth: { xs: 350, md: 250 },
+          width: "12.4rem",
+          backgroundImage: "url(./p7.png)",
+          padding: 4,
         }}
-        alt="Movify"
-        src="/Movifyy.png"
-      />
-      <Divider sx={{ color: "black", border: 1 }} />
-      <List sx={{ color: "black" }}>
-        {/* For Home */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5.5 }}
-            component={Link}
-            to="/"
-            variant=""
-            endIcon={<HomeIcon />}
-          >
-            <ListItemText> Home</ListItemText>
-          </Button>
-        </ListItem>
-        {/* For About */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5.5 }}
-            component={Link}
-            to="/about"
-            variant=""
-            endIcon={<InfoIcon />}
-          >
-            <ListItemText> About </ListItemText>
-          </Button>
-        </ListItem>
-        {/* For Feedback */}
-        <ListItem>
-          <Button
-            sx={{ marginLeft: 5 }}
-            component={Link}
-            to="/feedback"
-            variant=""
-            endIcon={<FeedbackIcon />}
-          >
-            <ListItemText> Feedback</ListItemText>
-          </Button>
-        </ListItem>
-      </List>
-      <Divider sx={{ color: "black", border: 1 }} />
-    </Box>
+      >
+        <SearchB
+          sx={{
+            mt: 6,
+            display: { xs: "flex", md: "none" },
+          }}
+          datat={dataTransfer}
+          onSaveSearchData={saveSearchHandler}
+        ></SearchB>
+      </Container>
+
+      <Box
+        onClick={handleDrawerToggle}
+        sx={{
+          textAlign: "center",
+          backgroundImage: "url(./p7.png)",
+          overflow: "hidden",
+          height: "100vh",
+        }}
+      >
+        <Divider sx={{ color: "black", border: 1 }} />
+        <List>
+          {/* For Home */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/"
+              variant=""
+              endIcon={<HomeIcon />}
+              onClick={clickHandler}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.3rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  Home
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+          {/* For About */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/about"
+              variant=""
+              endIcon={<InfoIcon />}
+              onClick={clickHandler}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.3rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  About
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+          {/* For Feedback */}
+          <ListItem>
+            <Button
+              sx={{ marginLeft: 1 }}
+              component={Link}
+              to="/feedback"
+              variant=""
+              endIcon={<FeedbackIcon />}
+              onClick={clickHandler}
+            >
+              <ListItemText>
+                <Typography
+                  sx={{
+                    fontFamily: "monospace",
+                    fontSize: "1.3rem",
+                    color: "#142D4C",
+                  }}
+                >
+                  Feedback
+                </Typography>
+              </ListItemText>
+            </Button>
+          </ListItem>
+        </List>
+        <Divider sx={{ color: "black", border: 1 }} />
+        <Typography
+          sx={{
+            mt: 60,
+            fontFamily: "monospace",
+            fontSize: "1.3rem",
+          }}
+        >
+          Movify
+        </Typography>
+        <Divider sx={{ color: "black", border: 1 }} />
+      </Box>
+    </>
   );
 
   const container =
@@ -109,26 +177,30 @@ function Navbar(props) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
-        elevation={5}
+        elevation={14}
         component="nav"
         sx={{
-          background: "#333",
+          backgroundImage: "url(./p7.png)",
         }}
       >
         <Toolbar>
-          <Box
-            component="img"
-            sx={{
-              flexGrow: 0,
-              display: { xs: "none", md: "flex" },
-              height: 80,
-              width: 200,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-            }}
-            alt="Movify"
-            src="/Movifyy.png"
-          />
+          <Link to="/">
+            <Box
+              component="img"
+              sx={{
+                flexGrow: 0,
+                display: { xs: "none", md: "flex" },
+                height: 80,
+                width: 200,
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
+              }}
+              alt="Movify"
+              src="/Movifyy.png"
+              onClick={clickHandler}
+            />
+          </Link>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -139,8 +211,38 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
 
+          {/* for mobile  */}
+          <Link to="/">
+            <Box
+              component="img"
+              sx={{
+                margin: 0.5,
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                height: "6rem",
+                alignItems: "center",
+                marginLeft: 6,
+                maxHeight: { xs: 80, md: 167 },
+                maxWidth: { xs: 190, md: 250 },
+              }}
+              alt="Movify"
+              src="/Movifyy.png"
+            />
+          </Link>
+          {/*  above  mobile logo */}
+
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button component={Link} to="/" variant="" sx={{ color: "White" }}>
+            <Button
+              component={Link}
+              to="/"
+              variant=""
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
+              onClick={clickHandler}
+            >
               Home
             </Button>
 
@@ -148,7 +250,12 @@ function Navbar(props) {
               component={Link}
               to="/about"
               variant=""
-              sx={{ color: "White" }}
+              onClick={clickHandler}
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
             >
               About
             </Button>
@@ -157,16 +264,29 @@ function Navbar(props) {
               component={Link}
               to="/feedback"
               variant=""
-              sx={{ color: "White" }}
+              onClick={clickHandler}
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "1.1rem",
+                color: "#142D4C",
+              }}
             >
               Feedback
             </Button>
           </Box>
-          <Container sx={{ width: "20rem", marginRight: 10 }}>
+          <Container
+            sx={{
+              width: "20rem",
+              marginRight: 10,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            {/* Search BAr here */}
             <SearchB
               datat={dataTransfer}
               onSaveSearchData={saveSearchHandler}
             ></SearchB>
+            {/*  */}
           </Container>
         </Toolbar>
       </AppBar>
@@ -184,7 +304,6 @@ function Navbar(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              border: "solid black 2px",
             },
           }}
         >

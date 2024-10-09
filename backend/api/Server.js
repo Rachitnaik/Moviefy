@@ -151,6 +151,34 @@ app.get("/movies/:_id", async (request, response) => {
     response.status(500).send(error);
   }
 });
+app.get("/movies/reviews/:_id", async (request, response) => {
+  const review = await movieData.findById(request.params._id).reviews;
+
+  try {
+    response.send(review);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+//for adding reviews
+app.post("/movies/reviews/:_id", async (req, res) => {
+  const { _id } = req.params;
+  const { name, comment } = req.body;
+
+  try {
+    const movie = await movieData.findByIdAndUpdate(
+      _id,
+      { $push: { Review: { name, comment } } },
+      { new: false }
+    );
+
+    res.status(201).send({ message: "Review added successfully", movie });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to add review" });
+  }
+});
 
 app.get("/search/title", async (req, res) => {
   const { title } = req.query;

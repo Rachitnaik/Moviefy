@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
+import { Typography } from "@mui/material";
 
 function SearchB(props) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,12 +20,17 @@ function SearchB(props) {
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
     debouncedSearch(event.target.value);
+
     //console.log(setSearchTerm);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault(event);
+    setSearchTerm("");
   };
+
+  //new function to clear search bar
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -33,32 +39,25 @@ function SearchB(props) {
         "& .MuiTextField-root": { m: 1, width: "24ch" },
       }}
       noValidate
-      autoComplete="on"
+      autoComplete="off"
     >
       <Box>
         <TextField
           id="input-with-icon-textfield"
           /*  label="Type Your Search" */
-          label="Type Your Movie"
+
+          placeholder="Search"
           value={searchTerm}
           onChange={handleSearchTermChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: "white" }} />
+                <SearchIcon sx={{ color: "#333" }} />
               </InputAdornment>
             ),
           }}
           variant="standard"
         />
-        {/*  <TextField
-          id="standard-search"
-          label="Type To Search"
-          type="search"
-          variant="standard"
-          value={searchTerm}
-          onChange={handleSearchTermChange}
-        /> */}
       </Box>
     </form>
   );
