@@ -94,8 +94,6 @@ import cors from "cors";
 import movieData from "./movies.js";
 import Feedback from "./feedback.js";
 import dotenv from "dotenv";
-import { createServer } from "http";
-import { parse } from "url";
 
 // Initialize express app
 const app = express();
@@ -107,23 +105,34 @@ app.use(
   })
 );
 
-mongoose.set("strictQuery", false);
 dotenv.config();
 
-// Connect to MongoDB
-mongoose.connect(process.env.url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  family: 4,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-  console.log("Connected successfully");
-});
+// Handle MongoDB connection in a serverless environment
+let isConnected = false;
 
-// Define routes
+async function connectToDatabase() {
+  if (isConnected) {
+    return; // reuse existing connection
+  }
+
+  mongoose.set("strictQuery", false);
+  try {
+    await mongoose.connect(process.env.url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      family: 4,
+    });
+    isConnected = true;
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
+  }
+}
+
+// Routes
 app.get("/movies", async (request, response) => {
+  await connectToDatabase();
   const data = await movieData.find({});
   try {
     response.send(data);
@@ -133,6 +142,7 @@ app.get("/movies", async (request, response) => {
 });
 
 app.get("/movies/:_id", async (request, response) => {
+  await connectToDatabase();
   const movie = await movieData.findById(request.params._id);
   try {
     response.send(movie);
@@ -143,6 +153,7 @@ app.get("/movies/:_id", async (request, response) => {
 
 app.get("/search/title", async (req, res) => {
   const { title } = req.query;
+  await connectToDatabase();
   try {
     const movies = await movieData.find({
       Title: { $regex: title, $options: "i" },
@@ -153,7 +164,8 @@ app.get("/search/title", async (req, res) => {
   }
 });
 
-app.post("/Feedback", (req, res) => {
+app.post("/Feedback", async (req, res) => {
+  await connectToDatabase();
   const feedback = new Feedback({
     name: req.body.name,
     email: req.body.email,
@@ -175,12 +187,5 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-// Export the serverless function handler for Vercel
-export default function handler(req, res) {
-  const server = createServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    app(req, res, parsedUrl);
-  });
-
-  return server(req, res);
-}
+// Export the express app as a serverless function
+export default app;
