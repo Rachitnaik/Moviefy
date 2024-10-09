@@ -206,7 +206,7 @@ function ViewReview() {
     async function fetchData() {
       if (_id) {
         const result = await axios.get(
-          `https://moviefy-wine.vercel.app/movies/${_id}`
+          `https://moviefy-84ni.vercel.app/movies/${_id}`
         );
         setReview(result);
       }

@@ -37,7 +37,7 @@ const MovieCarousel = () => {
   };
 
   useEffect(() => {
-    axios.get("https://moviefy-wine.vercel.app/movies").then((response) => {
+    axios.get("https://moviefy-84ni.vercel.app/movies").then((response) => {
       setMovies(response.data);
     });
   }, []);

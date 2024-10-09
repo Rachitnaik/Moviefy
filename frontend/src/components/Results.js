@@ -15,7 +15,7 @@ import { Typography } from "@mui/material";
 
 export default function Results({ name }) {
   const [n, setN] = useState([]);
-  const baseURL = `https://moviefy-wine.vercel.app/search/title?title=${name}`;
+  const baseURL = `https://moviefy-84ni.vercel.app/search/title?title=${name}`;
 
   ///////////for pagination///////
 

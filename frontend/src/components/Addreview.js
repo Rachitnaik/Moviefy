@@ -77,7 +77,7 @@ function AddReview(props) {
 
     try {
       const response = await axios.post(
-        `https://moviefy-wine.vercel.app/movies/reviews/${_id}`,
+        `https://moviefy-84ni.vercel.app/movies/reviews/${_id}`,
         {
           name,
           comment,

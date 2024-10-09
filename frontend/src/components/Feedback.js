@@ -50,7 +50,7 @@ const FeedbackForm = () => {
       email: values.email,
       message: values.message,
     };
-    axios.post("https://moviefy-wine.vercel.app/Feedback", data).then((res) => {
+    axios.post("https://moviefy-84ni.vercel.app/Feedback", data).then((res) => {
       console.log(res.data);
       resetForm();
       setFormSubmitted(true);
