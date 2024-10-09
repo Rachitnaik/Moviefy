@@ -4,7 +4,7 @@ import { movieActions } from "./movieSlice";
 
 //const movieFetch = useSelector(state); useSelector when we want to use data from redux store
 
-const url = "https://moviefy-wine.vercel.app//movies";
+const url = "https://moviefy-wine.vercel.app/movies";
 export const getMovies = () => {
   return (dispatch) => {
     axios

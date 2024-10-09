@@ -50,29 +50,27 @@ const FeedbackForm = () => {
       email: values.email,
       message: values.message,
     };
-    axios
-      .post("https://moviefy-wine.vercel.app//Feedback", data)
-      .then((res) => {
-        console.log(res.data);
-        resetForm();
-        setFormSubmitted(true);
-        //reply feedback
-        emailjs
-          .sendForm(
-            "service_1y5isqf",
-            "template_q505vjk",
-            form.current,
-            "ughgVZ9M7whyDcgeR"
-          )
-          .then(
-            (result) => {
-              console.log(result.text);
-            },
-            (error) => {
-              console.log(error.text);
-            }
-          );
-      });
+    axios.post("https://moviefy-wine.vercel.app/Feedback", data).then((res) => {
+      console.log(res.data);
+      resetForm();
+      setFormSubmitted(true);
+      //reply feedback
+      emailjs
+        .sendForm(
+          "service_1y5isqf",
+          "template_q505vjk",
+          form.current,
+          "ughgVZ9M7whyDcgeR"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    });
   };
 
   /*  useEffect(() => {

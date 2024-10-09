@@ -50,7 +50,7 @@ function PosterDetails() {
       console.log("_id inside useEffect: ", _id);
       if (_id && !Object.keys(movie).length) {
         const result = await axios.get(
-          `https://moviefy-wine.vercel.app//movies/${_id}`
+          `https://moviefy-wine.vercel.app/movies/${_id}`
         );
         console.log(result);
         setMovie(result.data);
