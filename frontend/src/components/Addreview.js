@@ -77,13 +77,13 @@ function AddReview(props) {
 
     try {
       const response = await axios.post(
-        `https://moviefy-84ni.vercel.app/movies/reviews/${_id}`,
+        `https://moviefy-wine.vercel.app/movies/reviews/${_id}`,
         {
           name,
           comment,
         }
       );
-      /*   props.onReload(); */
+      props.onReload();
       console.log(response.data);
     } catch (error) {
       console.error(error);

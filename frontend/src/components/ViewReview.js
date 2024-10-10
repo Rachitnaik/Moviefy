@@ -212,7 +212,7 @@ function ViewReview() {
       }
     }
     fetchData();
-  }, [[shouldReload]]);
+  }, [shouldReload]);
 
   // state to show/hide the AddReview component
   const [showAddReview, setShowAddReview] = useState(false);
@@ -224,9 +224,6 @@ function ViewReview() {
 
   // function to handle the submission of the review form
   const handleSubmitReview = () => {
-    // handle form submission logic here
-    // ...
-    // close the dialog after submitting the form
     toggleShowAddReview();
   };
 
@@ -263,7 +260,7 @@ function ViewReview() {
               <AddReview onReload={handleReload} />
             </DialogContentText>
           </DialogContent>
-          {/*  <DialogActions>
+          {/* <DialogActions>
             <Button onClick={toggleShowAddReview}>Cancel</Button>
             <Button onClick={handleSubmitReview}>Submit</Button>
           </DialogActions> */}
