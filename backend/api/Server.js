@@ -151,15 +151,15 @@ app.get("/movies/:_id", async (request, response) => {
     response.status(500).send(error);
   }
 });
-app.get("/movies/reviews/:_id", async (request, response) => {
-  const review = await movieData.findById(request.params._id).reviews;
+// app.get("/movies/reviews/:_id", async (request, response) => {
+//   const review = await movieData.findById(request.params._id).reviews;
 
-  try {
-    response.send(review);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
+//   try {
+//     response.send(review);
+//   } catch (error) {
+//     response.status(500).send(error);
+//   }
+// });
 
 //for adding reviews
 app.post("/movies/reviews/:_id", async (req, res) => {
