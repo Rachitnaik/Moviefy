@@ -212,7 +212,7 @@ function ViewReview() {
       }
     }
     fetchData();
-  }, [shouldReload]);
+  }, []);
 
   // state to show/hide the AddReview component
   const [showAddReview, setShowAddReview] = useState(false);
