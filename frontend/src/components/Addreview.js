@@ -83,7 +83,7 @@ function AddReview(props) {
           comment,
         }
       );
-      props.onReload();
+      // props.onReload();
       console.log(response.data);
     } catch (error) {
       console.error(error);
